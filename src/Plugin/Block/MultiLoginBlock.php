@@ -94,10 +94,6 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
       'standard_label' => 'Standard Login',
       'standard_open_default' => FALSE,
       'social_providers' => [],
-    // Default block label.
-      'label' => $this->t('Login with standard or social accounts'),
-    // Show block title by default.
-      'label_display' => TRUE,
     ];
   }
 
@@ -171,6 +167,8 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
 
     $form['standard_login']['standard_label'] = [
       '#type' => 'textfield',
+      '#access' => FALSE,
+      // Hide label field for simplicity and to keep label translatable.
       '#title' => $this->t('Label'),
       '#default_value' => $config['standard_label'],
       '#states' => [
@@ -224,7 +222,9 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
       $form['social_providers_wrapper'][$provider_id]['label'] = [
         '#type' => 'textfield',
         '#title' => $this->t('Label'),
-        '#default_value' => $provider_config['label'] ?? $this->t('Login with @provider', ['@provider' => $provider_info['name']]),
+      // Hide label field for simplicity and to keep label translatable.
+        '#access' => FALSE,
+        // '#default_value' => $provider_config['label'] ?? 'Login with @provider', ['@provider' => $provider_info['name']],.
         '#states' => [
           'visible' => [
             ':input[name="settings[social_providers_wrapper][' . $provider_id . '][enabled]"]' => ['checked' => TRUE],
@@ -314,7 +314,8 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
     if ($config['enable_standard_login']) {
       $login_methods[] = [
         'id' => 'standard',
-        'label' => $config['standard_label'],
+        // 'label' => $config['standard_label'],
+        'label' => $this->t('Standard Login')->render(),
         'icon' => 'drupal',
         'tooltip' => $this->t('Standard Login with Drupal credentials.')->render(),
         'open_default' => $config['standard_open_default'] ?? FALSE,
@@ -349,7 +350,8 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
 
         $login_methods[] = [
           'id' => str_replace('social_auth_', '', $provider_id),
-          'label' => $provider_config['label'] ?? $provider_info['name'],
+          // 'label' => $provider_config['label'] ?? $provider_info['name'],
+          'label' => $this->t('Login with @provider', ['@provider' => $provider_info['name']])->render(),
           'icon' => $provider_info['icon'],
           'open_default' => $provider_config['open_default'] ?? FALSE,
           'tooltip' => $this->t('Login with @provider credentials.', ['@provider' => $provider_info['name']])->render(),
@@ -371,6 +373,8 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
     }
 
     return [
+    // Block title.
+      '#title' => $this->t('Login with standard or social accounts'),
       '#theme' => 'multi_login_block',
       '#login_methods' => $login_methods,
       '#attached' => [
