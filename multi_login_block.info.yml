@@ -1,0 +1,7 @@
+name: 'Multi Login Block'
+type: module
+description: 'Provides a block with multiple login methods in collapsible details elements'
+core_version_requirement: ^9 || ^10 || ^11
+package: Custom
+dependencies:
+  - drupal:user

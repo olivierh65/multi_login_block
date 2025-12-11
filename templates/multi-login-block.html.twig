@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Template for the Multi Login Block.
+ *
+ * Available variables:
+ * - login_methods: Array of login methods, each containing:
+ *   - id: Unique identifier for the method
+ *   - label: Display label for the method
+ *   - icon: Icon identifier for the method
+ *   - content: Renderable content (form or markup)
+ */
+#}
+<div class="multi-login-block">
+  {% for method in login_methods %}
+    <details class="multi-login-method multi-login-method--{{ method.id }}"{% if method.open_default %} open{% endif %}>
+      <summary class="multi-login-summary">
+        <span class="multi-login-icon multi-login-icon--{{ method.icon }}"></span>
+        <span class="multi-login-label">{{ method.label }}</span>
+      </summary>
+      <div class="multi-login-content">
+        {{ method.content }}
+      </div>
+    </details>
+  {% endfor %}
+</div>

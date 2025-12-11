@@ -1,0 +1,5 @@
+multi_login_styles:
+  version: 1.x
+  css:
+    theme:
+      css/multi-login-block.css: {}
