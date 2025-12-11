@@ -1,0 +1,114 @@
+block.settings.multi_login_block:
+  type: block_settings
+  label: 'Multi Login Block settings'
+  mapping:
+    enable_standard_login:
+      type: boolean
+      label: 'Enable standard login'
+    standard_label:
+      type: string
+      label: 'Standard login label'
+    standard_open_default:
+      type: boolean
+      label: 'Open standard login by default'
+    social_providers:
+      type: mapping
+      label: 'Social Auth Providers'
+      mapping:
+        social_auth_google:
+          type: mapping
+          label: 'Google'
+          mapping:
+            enabled:
+              type: boolean
+            label:
+              type: string
+            network:
+              type: string
+            custom_url:
+              type: string
+            button_text:
+              type: string
+            open_default:
+              type: boolean
+        social_auth_facebook:
+          type: mapping
+          label: 'Facebook'
+          mapping:
+            enabled:
+              type: boolean
+            label:
+              type: string
+            network:
+              type: string
+            custom_url:
+              type: string
+            button_text:
+              type: string
+            open_default:
+              type: boolean
+        social_auth_github:
+          type: mapping
+          label: 'GitHub'
+          mapping:
+            enabled:
+              type: boolean
+            label:
+              type: string
+            network:
+              type: string
+            custom_url:
+              type: string
+            button_text:
+              type: string
+            open_default:
+              type: boolean
+        social_auth_linkedin:
+          type: mapping
+          label: 'LinkedIn'
+          mapping:
+            enabled:
+              type: boolean
+            label:
+              type: string
+            network:
+              type: string
+            custom_url:
+              type: string
+            button_text:
+              type: string
+            open_default:
+              type: boolean
+        social_auth_twitter:
+          type: mapping
+          label: 'Twitter'
+          mapping:
+            enabled:
+              type: boolean
+            label:
+              type: string
+            network:
+              type: string
+            custom_url:
+              type: string
+            button_text:
+              type: string
+            open_default:
+              type: boolean
+        social_auth_microsoft:
+          type: mapping
+          label: 'Microsoft'
+          mapping:
+            enabled:
+              type: boolean
+            label:
+              type: string
+            network:
+              type: string
+            custom_url:
+              type: string
+            button_text:
+              type: string
+            open_default:
+              type: boolean
+              

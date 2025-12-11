@@ -1,0 +1,160 @@
+# $Id$
+#
+# Traduction en français de Drupal (général)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Généré à partir des fichiers :
+#  modules/custom/multi_login_block/multi_login_block.info.yml: n/a
+#  modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php: n/a
+#  modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-12-11 21:46+0100\n"
+"PO-Revision-Date: 2025-12-11 21:53+0100\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: French <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.8\n"
+
+#: modules/custom/multi_login_block/multi_login_block.info.yml:0
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:14
+msgid "Multi Login Block"
+msgstr "Multi Login Block"
+
+#: modules/custom/multi_login_block/multi_login_block.info.yml:0
+msgid "Provides a block with multiple login methods in collapsible details elements"
+msgstr ""
+"Fournit un bloc avec plusieurs méthodes de connexion dans des éléments \n"
+"repliables"
+
+#: modules/custom/multi_login_block/multi_login_block.info.yml:0
+msgid "Custom"
+msgstr "Personnalisé"
+
+#: modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml:0
+msgid "Multi Login Block settings"
+msgstr "Paramètres de Multi Login Block"
+
+#: modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml:0
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:168
+msgid "Enable standard login"
+msgstr "Activer la connexion standard"
+
+#: modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml:0
+msgid "Standard login label"
+msgstr "Étiquette de la connexion standard"
+
+#: modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml:0
+msgid "Open standard login by default"
+msgstr "Ouvrir la connexion standard par défaut"
+
+#: modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml:0
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:199
+msgid "Social Auth Providers"
+msgstr "Fournisseurs d’authentification"
+
+#: modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml:0
+msgid "Google"
+msgstr "Google"
+
+#: modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml:0
+msgid "Facebook"
+msgstr "Facebook"
+
+#: modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml:0
+msgid "GitHub"
+msgstr "GitHub"
+
+#: modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml:0
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml:0
+msgid "Twitter"
+msgstr "Twitter"
+
+#: modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml:0
+msgid "Microsoft"
+msgstr "Microsoft"
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:98
+msgid "Login with standard or social accounts"
+msgstr "Connexion standard ou via vos comptes sociaux"
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:162
+msgid "Standard Login"
+msgstr "Connexion standard"
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:174;226
+msgid "Label"
+msgstr "Étiquette"
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:185;272
+msgid "Open by default"
+msgstr "Ouvert par défaut"
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:205
+msgid "No Social Auth modules detected. Install modules like social_auth_google, social_auth_facebook, etc."
+msgstr "Aucun module d’authentification sociale détecté. Installez des modules comme social_auth_google, social_auth_facebook, etc."
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:220
+msgid "Enable @provider"
+msgstr "Activer @provider"
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:227
+msgid "Login with @provider"
+msgstr "Se connecter avec @provider"
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:237
+msgid "Network identifier"
+msgstr "Identifiant du réseau"
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:239
+msgid "Network identifier for the route (e.g., @network)"
+msgstr "Identifiant du réseau pour la route (ex. : @network)"
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:249
+msgid "Or custom URL"
+msgstr "Ou URL personnalisée"
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:251
+msgid "Leave empty to use social_auth.network.redirect route. Use this for external OAuth URLs."
+msgstr "Laisser vide pour utiliser la route social_auth.network.redirect. À utiliser pour les URL OAuth externes."
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:261
+msgid "Button text"
+msgstr "Texte du bouton"
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:262
+msgid "Connect..."
+msgstr "Se connecter..."
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:319
+msgid "Standard Login with Drupal credentials."
+msgstr "Connexion standard avec les identifiants Drupal."
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:355
+msgid "Login with @provider credentials."
+msgstr "Se connecter avec les identifiants @provider."
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:357
+msgid "Click the button below to login with your @provider account."
+msgstr "Cliquez sur le bouton ci-dessous pour vous connecter avec votre compte @provider."
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:362
+msgid "Login"
+msgstr "Connexion"
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:342
+msgid "Route social_auth.network.redirect does not exist for provider @provider (network: @network)"
+msgstr "La route social_auth.network.redirect n’existe pas pour le fournisseur @provider (réseau : @network)"
+
+#: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:14
+msgid "User"
+msgstr "Utilisateur"

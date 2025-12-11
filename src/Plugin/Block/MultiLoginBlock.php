@@ -9,6 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Url;
+use Psr\Log\LoggerInterface;
 
 /**
  * Provides a 'Multi Login' Block.
@@ -36,24 +37,51 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
   protected $moduleHandler;
 
   /**
+   * The logger channel.
+   *
+   * @var \Psr\Log\LoggerInterface
+   */
+  protected $logger;
+
+  /**
+   * The configuration.
+   */
+  protected $configuration;
+
+  /**
    * Constructs a new MultiLoginBlock instance.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, FormBuilderInterface $form_builder, ModuleHandlerInterface $module_handler) {
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    FormBuilderInterface $form_builder,
+    ModuleHandlerInterface $module_handler,
+    LoggerInterface $logger,
+  ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->formBuilder = $form_builder;
     $this->moduleHandler = $module_handler;
+    $this->logger = $logger;
+    $this->configuration = $configuration;
   }
 
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+  public static function create(
+    ContainerInterface $container,
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+  ) {
     return new static(
       $configuration,
       $plugin_id,
       $plugin_definition,
       $container->get('form_builder'),
-      $container->get('module_handler')
+      $container->get('module_handler'),
+      $container->get('logger.channel.default')
     );
   }
 
@@ -63,9 +91,13 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
   public function defaultConfiguration() {
     return [
       'enable_standard_login' => TRUE,
-      'standard_label' => 'Connexion standard',
+      'standard_label' => 'Standard Login',
       'standard_open_default' => FALSE,
       'social_providers' => [],
+    // Default block label.
+      'label' => $this->t('Login with standard or social accounts'),
+    // Show block title by default.
+      'label_display' => TRUE,
     ];
   }
 
@@ -75,7 +107,7 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
   protected function getSocialAuthProviders() {
     $providers = [];
 
-    // Liste des providers Social Auth connus.
+    // Liste of known Social Auth providers.
     $known_providers = [
       'social_auth_google' => [
         'name' => 'Google',
@@ -227,7 +259,7 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
       $form['social_providers_wrapper'][$provider_id]['button_text'] = [
         '#type' => 'textfield',
         '#title' => $this->t('Button text'),
-        '#default_value' => $provider_config['button_text'] ?? $this->t('Login'),
+        '#default_value' => $provider_config['button_text'] ?? $this->t('Connect...'),
         '#states' => [
           'visible' => [
             ':input[name="settings[social_providers_wrapper][' . $provider_id . '][enabled]"]' => ['checked' => TRUE],
@@ -284,6 +316,7 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
         'id' => 'standard',
         'label' => $config['standard_label'],
         'icon' => 'drupal',
+        'tooltip' => $this->t('Standard Login with Drupal credentials.')->render(),
         'open_default' => $config['standard_open_default'] ?? FALSE,
         'content' => $this->formBuilder->getForm('Drupal\user\Form\UserLoginForm'),
       ];
@@ -295,7 +328,7 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
       $provider_config = $config['social_providers'][$provider_id] ?? [];
 
       if (!empty($provider_config['enabled'])) {
-        // Déterminer l'URL à utiliser.
+        // Find url to use for login.
         if (!empty($provider_config['custom_url'])) {
           $url = Url::fromUri($provider_config['custom_url']);
         }
@@ -305,8 +338,8 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
             $url = Url::fromRoute('social_auth.network.redirect', ['network' => $network]);
           }
           catch (\Exception $e) {
-            // Si la route n'existe pas, on skip ce provider.
-            \Drupal::logger('multi_login_block')->error(
+            // If the route does not exist, skip this provider.
+            $this->logger->error(
               'Route social_auth.network.redirect does not exist for provider @provider (network: @network)',
               ['@provider' => $provider_id, '@network' => $network]
             );
@@ -319,6 +352,7 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
           'label' => $provider_config['label'] ?? $provider_info['name'],
           'icon' => $provider_info['icon'],
           'open_default' => $provider_config['open_default'] ?? FALSE,
+          'tooltip' => $this->t('Login with @provider credentials.', ['@provider' => $provider_info['name']])->render(),
           'content' => [
             '#markup' => '<p>' . $this->t('Click the button below to login with your @provider account.', [
               '@provider' => $provider_info['name'],

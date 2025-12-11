@@ -1,0 +1,4 @@
+enable_standard_login: true
+standard_label: 'Standard Login'
+standard_open_default: false
+social_providers: {}

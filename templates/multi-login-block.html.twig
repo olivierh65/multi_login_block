@@ -9,18 +9,21 @@
  *   - label: Display label for the method
  *   - icon: Icon identifier for the method
  *   - content: Renderable content (form or markup)
+ *   - tooltip: (optional) Tooltip text for the method
+ *   - open_default: (optional) Boolean indicating if the method should be open by default
  */
 #}
+
 <div class="multi-login-block">
-  {% for method in login_methods %}
-    <details class="multi-login-method multi-login-method--{{ method.id }}"{% if method.open_default %} open{% endif %}>
-      <summary class="multi-login-summary">
-        <span class="multi-login-icon multi-login-icon--{{ method.icon }}"></span>
-        <span class="multi-login-label">{{ method.label }}</span>
-      </summary>
-      <div class="multi-login-content">
-        {{ method.content }}
-      </div>
-    </details>
-  {% endfor %}
+	{% for method in login_methods %}
+		<details class="multi-login-method multi-login-method--{{ method.id }}" {% if method.open_default %} open {% endif %} {% if method.tooltip %} title="{{ method.tooltip|e('html_attr') }}" {% endif %}>
+			<summary class="multi-login-summary">
+				<span class="multi-login-icon multi-login-icon--{{ method.icon }}"></span>
+				<span class="multi-login-label">{{ method.label }}</span>
+			</summary>
+			<div class="multi-login-content">
+				{{ method.content }}
+			</div>
+		</details>
+	{% endfor %}
 </div>

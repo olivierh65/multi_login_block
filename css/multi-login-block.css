@@ -75,74 +75,37 @@
 }
 
 .multi-login-content {
-  padding: 1.5rem;
+      padding: .3rem .3rem .3rem .3rem;
+  display: flex;
+  font-size: 0.8rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.multi-login-content p {
+      text-align: justify;
+    margin: 0px 0px 0.2rem 0px;
 }
 
 /* Styles spécifiques pour les boutons OAuth */
 .oauth-button {
   display: inline-block;
-  padding: 0.75rem 1.5rem;
-  margin-top: 0.5rem;
+  padding: 0.3rem .5rem .3rem .5rem;
+  margin: 0;
   text-decoration: none;
   border-radius: 4px;
+  border-width: 0.1rem;
+    border-color: lightslategray;
   font-weight: 500;
   transition: all 0.2s ease;
-  color: white;
+  color: #0073aa;
 }
 
-.oauth-google {
-  background-color: #4285f4;
-  border: 1px solid #4285f4;
-}
-
-.oauth-google:hover {
-  background-color: #357ae8;
-}
-
-.oauth-facebook {
-  background-color: #1877f2;
-  border: 1px solid #1877f2;
-}
-
-.oauth-facebook:hover {
-  background-color: #166fe5;
-}
-
-.oauth-github {
-  background-color: #24292e;
-  border: 1px solid #24292e;
-}
-
-.oauth-github:hover {
-  background-color: #1b1f23;
-}
-
-.oauth-linkedin {
-  background-color: #0077b5;
-  border: 1px solid #0077b5;
-}
-
-.oauth-linkedin:hover {
-  background-color: #006399;
-}
-
-.oauth-twitter {
-  background-color: #1da1f2;
-  border: 1px solid #1da1f2;
-}
-
-.oauth-twitter:hover {
-  background-color: #0d8bd9;
-}
-
-.oauth-microsoft {
-  background-color: #00a4ef;
-  border: 1px solid #00a4ef;
-}
-
-.oauth-microsoft:hover {
-  background-color: #0078d4;
-}
+.oauth-button:hover {
+    background-color: #c21d1d;
+    text-decoration: none;
+    }
 
 /* Style pour le formulaire de connexion standard */
 .multi-login-method--standard .form-item {
