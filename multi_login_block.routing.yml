@@ -4,4 +4,4 @@ multi_login_block.admin:
     _controller: '\Drupal\multi_login_block\Controller\AdminController::index'
     _title: 'Multi Login Block Configuration'
   requirements:
-    _permission: 'administer blocks'
+    _permission: 'access administration pages'

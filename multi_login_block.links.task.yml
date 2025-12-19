@@ -1,0 +1,4 @@
+multi_login_block.admin:
+  route_name: multi_login_block.admin
+  title: 'Multi Login Block'
+  base_route: multi_login_block.admin

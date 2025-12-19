@@ -40,6 +40,13 @@
   line-height: 1;
 }
 
+.help-icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 /* Help Dialog Styles */
 .multi-login-help-dialog {
   max-width: 600px;

@@ -14,6 +14,8 @@
  * - help_icon: (optional) Help icon configuration containing:
  *   - enabled: Boolean to show/hide the help icon
  *   - url: URL to the help page
+ *   - type: Type of icon ('text' or 'image')
+ *   - image_url: URL to the image if type is 'image'
  */
 #}
 
@@ -21,7 +23,15 @@
 	{% if help_icon and help_icon.enabled %}
 		<div class="multi-login-help-icon-wrapper">
 			<button class="multi-login-help-icon" aria-label="{{ 'Help'|t }}" data-help-url="{{ help_icon.url }}">
-				<span class="help-icon-symbol">?</span>
+				{% if help_icon.type == 'image' and help_icon.image_url %}
+					{% set image_src = help_icon.image_url %}
+					{% if image_src starts with 'public://' or image_src starts with 'private://' or image_src starts with 'temporary://' %}
+						{% set image_src = image_src | file_url %}
+					{% endif %}
+					<img src="{{ image_src }}" alt="{{ 'Help'|t }}" class="help-icon-image" />
+				{% else %}
+					<span class="help-icon-symbol">?</span>
+				{% endif %}
 			</button>
 		</div>
 	{% endif %}

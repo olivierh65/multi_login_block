@@ -96,6 +96,8 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
       'social_providers' => [],
       'show_help_icon' => FALSE,
       'help_page' => '',
+      'help_icon_type' => 'text',
+      'help_icon_image_url' => '',
     ];
   }
 
@@ -232,6 +234,34 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
       ],
     ];
 
+    $form['help_settings']['help_icon_type'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Help icon type'),
+      '#options' => [
+        'text' => $this->t('Text ("?" character)'),
+        'image' => $this->t('Custom image'),
+      ],
+      '#default_value' => $config['help_icon_type'],
+      '#states' => [
+        'visible' => [
+          ':input[name="settings[help_settings][show_help_icon]"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+
+    $form['help_settings']['help_icon_image_url'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Image URL'),
+      '#description' => $this->t('Enter the URL of the help icon image or animated GIF (e.g., "/images/help-icon.png").'),
+      '#default_value' => $config['help_icon_image_url'],
+      '#states' => [
+        'visible' => [
+          ':input[name="settings[help_settings][show_help_icon]"]' => ['checked' => TRUE],
+          ':input[name="settings[help_settings][help_icon_type]"]' => ['value' => 'image'],
+        ],
+      ],
+    ];
+
     foreach ($providers as $provider_id => $provider_info) {
       $provider_config = $config['social_providers'][$provider_id] ?? [];
 
@@ -320,6 +350,8 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
 
     $this->configuration['show_help_icon'] = $form_state->getValue(['help_settings', 'show_help_icon']);
     $this->configuration['help_page'] = $form_state->getValue(['help_settings', 'help_page']);
+    $this->configuration['help_icon_type'] = $form_state->getValue(['help_settings', 'help_icon_type']);
+    $this->configuration['help_icon_image_url'] = $form_state->getValue(['help_settings', 'help_icon_image_url']);
 
     $providers = $this->getSocialAuthProviders();
     $social_providers_config = [];
@@ -427,6 +459,8 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
       $build['#help_icon'] = [
         'enabled' => TRUE,
         'url' => $help_page,
+        'type' => $config['help_icon_type'] ?? 'text',
+        'image_url' => $config['help_icon_image_url'] ?? '',
       ];
       $build['#attached']['library'][] = 'multi_login_block/help_popup';
     }
