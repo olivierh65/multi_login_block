@@ -1,0 +1,7 @@
+multi_login_block.admin:
+  path: '/admin/config/people/multi-login-block'
+  defaults:
+    _controller: '\Drupal\multi_login_block\Controller\AdminController::index'
+    _title: 'Multi Login Block Configuration'
+  requirements:
+    _permission: 'administer blocks'

@@ -1,0 +1,107 @@
+/**
+ * Multi Login Block Help Icon Styles
+ */
+
+.multi-login-help-icon-wrapper {
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.multi-login-help-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.multi-login-help-icon:hover {
+  background-color: #e0e0e0;
+  border-color: #999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.multi-login-help-icon:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+.help-icon-symbol {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* Help Dialog Styles */
+.multi-login-help-dialog {
+  max-width: 600px;
+  width: 90%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  padding: 0;
+}
+
+.multi-login-help-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.multi-login-help-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.multi-login-help-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+.multi-login-help-content p,
+.multi-login-help-content h1,
+.multi-login-help-content h2,
+.multi-login-help-content h3 {
+  margin-top: 0;
+}
+
+.multi-login-help-close {
+  align-self: flex-end;
+  margin: 15px 20px 20px 0;
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.multi-login-help-close:hover {
+  background-color: #e0e0e0;
+}
+
+.multi-login-help-close:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}

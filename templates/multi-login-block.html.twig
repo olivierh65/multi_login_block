@@ -11,10 +11,21 @@
  *   - content: Renderable content (form or markup)
  *   - tooltip: (optional) Tooltip text for the method
  *   - open_default: (optional) Boolean indicating if the method should be open by default
+ * - help_icon: (optional) Help icon configuration containing:
+ *   - enabled: Boolean to show/hide the help icon
+ *   - url: URL to the help page
  */
 #}
 
 <div class="multi-login-block">
+	{% if help_icon and help_icon.enabled %}
+		<div class="multi-login-help-icon-wrapper">
+			<button class="multi-login-help-icon" aria-label="{{ 'Help'|t }}" data-help-url="{{ help_icon.url }}">
+				<span class="help-icon-symbol">?</span>
+			</button>
+		</div>
+	{% endif %}
+
 	{% for method in login_methods %}
 		<details class="multi-login-method multi-login-method--{{ method.id }}" {% if method.open_default %} open {% endif %} {% if method.tooltip %} title="{{ method.tooltip|e('html_attr') }}" {% endif %}>
 			<summary class="multi-login-summary">
@@ -27,3 +38,10 @@
 		</details>
 	{% endfor %}
 </div>
+
+{% if help_icon and help_icon.enabled %}
+	<dialog id="multi-login-help-dialog" class="multi-login-help-dialog">
+		<div class="multi-login-help-content" id="multi-login-help-content"></div>
+		<button class="multi-login-help-close" aria-label="{{ 'Close'|t }}">{{ 'Close'|t }}</button>
+	</dialog>
+{% endif %}

@@ -13,6 +13,7 @@ function multi_login_block_theme($existing, $type, $theme, $path) {
     'multi_login_block' => [
       'variables' => [
         'login_methods' => [],
+        'help_icon' => NULL,
       ],
       'template' => 'multi-login-block',
     ],

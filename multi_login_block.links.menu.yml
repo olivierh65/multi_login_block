@@ -1,0 +1,6 @@
+multi_login_block.admin:
+  title: 'Multi Login Block'
+  description: 'Configure the Multi Login Block settings'
+  route_name: multi_login_block.admin
+  parent: system.admin_config_people
+  weight: 10

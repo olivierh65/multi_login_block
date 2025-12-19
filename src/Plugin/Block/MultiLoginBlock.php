@@ -94,6 +94,8 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
       'standard_label' => 'Standard Login',
       'standard_open_default' => FALSE,
       'social_providers' => [],
+      'show_help_icon' => FALSE,
+      'help_page' => '',
     ];
   }
 
@@ -204,6 +206,32 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
       ];
     }
 
+    // Help icon configuration.
+    $form['help_settings'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Help Icon'),
+      '#open' => FALSE,
+    ];
+
+    $form['help_settings']['show_help_icon'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Show help icon'),
+      '#description' => $this->t('Display a help icon that opens a popup with a help page.'),
+      '#default_value' => $config['show_help_icon'],
+    ];
+
+    $form['help_settings']['help_page'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Help page URL or node ID'),
+      '#description' => $this->t('Enter the URL of the help page or the node ID (e.g., "node/123").'),
+      '#default_value' => $config['help_page'],
+      '#states' => [
+        'visible' => [
+          ':input[name="settings[help_settings][show_help_icon]"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+
     foreach ($providers as $provider_id => $provider_info) {
       $provider_config = $config['social_providers'][$provider_id] ?? [];
 
@@ -290,6 +318,9 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
     $this->configuration['standard_label'] = $form_state->getValue(['standard_login', 'standard_label']);
     $this->configuration['standard_open_default'] = $form_state->getValue(['standard_login', 'standard_open_default']);
 
+    $this->configuration['show_help_icon'] = $form_state->getValue(['help_settings', 'show_help_icon']);
+    $this->configuration['help_page'] = $form_state->getValue(['help_settings', 'help_page']);
+
     $providers = $this->getSocialAuthProviders();
     $social_providers_config = [];
 
@@ -372,9 +403,8 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
       }
     }
 
-    return [
-    // Block title.
-      '#title' => $this->t('Login with standard or social accounts'),
+    $build = [
+      '#title' => $this->label(),
       '#theme' => 'multi_login_block',
       '#login_methods' => $login_methods,
       '#attached' => [
@@ -386,6 +416,22 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
         'contexts' => ['user'],
       ],
     ];
+
+    // Add help icon if enabled.
+    if ($config['show_help_icon'] && !empty($config['help_page'])) {
+      $help_page = $config['help_page'];
+      // Handle if it's a node ID without 'node/' prefix.
+      if (is_numeric($help_page)) {
+        $help_page = 'node/' . $help_page;
+      }
+      $build['#help_icon'] = [
+        'enabled' => TRUE,
+        'url' => $help_page,
+      ];
+      $build['#attached']['library'][] = 'multi_login_block/help_popup';
+    }
+
+    return $build;
   }
 
 }

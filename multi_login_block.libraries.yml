@@ -3,3 +3,11 @@ multi_login_styles:
   css:
     theme:
       css/multi-login-block.css: {}
+
+help_popup:
+  version: 1.x
+  css:
+    theme:
+      css/help-popup.css: {}
+  js:
+    js/help-popup.js: {}
