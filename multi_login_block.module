@@ -14,6 +14,7 @@ function multi_login_block_theme($existing, $type, $theme, $path) {
       'variables' => [
         'login_methods' => [],
         'help_icon' => NULL,
+        'mlb_title' => NULL,
       ],
       'template' => 'multi-login-block',
     ],

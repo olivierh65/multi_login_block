@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "POT-Creation-Date: 2025-12-11 21:46+0100\n"
-"PO-Revision-Date: 2025-12-11 22:24+0100\n"
+"PO-Revision-Date: 2026-01-31 20:07+0100\n"
 "Last-Translator: NAME ol65@sfr.fr\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -39,6 +39,10 @@ msgstr "Personnalisé"
 #: modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml:0
 msgid "Multi Login Block settings"
 msgstr "Paramètres de Multi Login Block"
+
+#: modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml:0
+msgid "Login Options"
+msgstr "Options de connection"
 
 #: modules/custom/multi_login_block/config/schema/multi_login_block.block.schema.yml:0
 #: modules/custom/multi_login_block/src/Plugin/Block/MultiLoginBlock.php:168

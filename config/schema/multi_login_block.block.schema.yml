@@ -2,6 +2,12 @@ block.settings.multi_login_block:
   type: block_settings
   label: 'Multi Login Block settings'
   mapping:
+    enable_mlb_title:
+      type: boolean
+      label: 'Enable Multi Login title'
+    mlb_title:
+      type: string
+      label: 'Multi Login title'
     enable_standard_login:
       type: boolean
       label: 'Enable standard login'
@@ -111,4 +117,3 @@ block.settings.multi_login_block:
               type: string
             open_default:
               type: boolean
-              

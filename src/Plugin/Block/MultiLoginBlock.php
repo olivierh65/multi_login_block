@@ -90,6 +90,8 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
    */
   public function defaultConfiguration() {
     return [
+      'enable_mlb_title' => TRUE,
+      'mlb_title' => 'Login Options',
       'enable_standard_login' => TRUE,
       'standard_label' => 'Standard Login',
       'standard_open_default' => FALSE,
@@ -155,6 +157,24 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
    */
   public function blockForm($form, FormStateInterface $form_state) {
     $config = $this->getConfiguration();
+
+    $form['enable_mlb_title'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable Multi Login title'),
+      '#default_value' => $config['enable_mlb_title'],
+    ];
+
+    $form['mlb_title'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Multi Login title'),
+      '#description' => $this->t('Title displayed above the login options.'),
+      '#default_value' => $config['mlb_title'],
+      '#states' => [
+        'visible' => [
+          ':input[name="settings[enable_mlb_title]"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
 
     // Standard login.
     $form['standard_login'] = [
@@ -344,6 +364,8 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
+    $this->configuration['enable_mlb_title'] = $form_state->getValue('enable_mlb_title');
+    $this->configuration['mlb_title'] = $form_state->getValue('mlb_title');
     $this->configuration['enable_standard_login'] = $form_state->getValue(['standard_login', 'enable_standard_login']);
     $this->configuration['standard_label'] = $form_state->getValue(['standard_login', 'standard_label']);
     $this->configuration['standard_open_default'] = $form_state->getValue(['standard_login', 'standard_open_default']);
@@ -436,7 +458,7 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
     }
 
     $build = [
-      '#title' => $this->label(),
+      '#mlb_title' => $config['enable_mlb_title'] ? ($config['mlb_title'] ?? $this->label()) : NULL,
       '#theme' => 'multi_login_block',
       '#login_methods' => $login_methods,
       '#attached' => [

@@ -1,3 +1,6 @@
+
+enable_mlb_title: true
+mlb_title: 'Login Options'
 enable_standard_login: true
 standard_label: 'Standard Login'
 standard_open_default: false

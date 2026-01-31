@@ -2,15 +2,27 @@
  * Multi Login Block Help Icon Styles
  */
 
-.multi-login-help-icon-wrapper {
-  text-align: right;
-  margin-bottom: 15px;
+ .multi-login-help-icon-wrapper {
+  display: grid;
+  grid-template-columns: 1fr auto; /* Titre flexible | Bouton fixe */
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.multi-login-title {
+  grid-column: 1;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+  /* Pas besoin de padding avec Grid, le bouton a sa propre colonne */
+  overflow-wrap: break-word; /* Optionnel : évite le débordement */
+  margin-bottom: 0;
+  color: #005a84;
 }
 
 .multi-login-help-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  grid-column: 2;
   width: 32px;
   height: 32px;
   border-radius: 50%;

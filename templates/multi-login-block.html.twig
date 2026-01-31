@@ -22,10 +22,11 @@
 <div class="multi-login-block">
 	{% if help_icon and help_icon.enabled %}
 		<div class="multi-login-help-icon-wrapper">
+		 	<span class="multi-login-title">{{ mlb_title }}</span>
 			<button class="multi-login-help-icon" aria-label="{{ 'Help'|t }}" data-help-url="{{ help_icon.url }}">
 				{% if help_icon.type == 'image' and help_icon.image_url %}
 					{% set image_src = help_icon.image_url %}
-					{% if image_src starts with 'public://' or image_src starts with 'private://' or image_src starts with 'temporary://' %}
+					{% if image_src starts with 'public://' or image_src starts with 'private://' %}
 						{% set image_src = image_src | file_url %}
 					{% endif %}
 					<img src="{{ image_src }}" alt="{{ 'Help'|t }}" class="help-icon-image" />
