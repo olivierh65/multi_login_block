@@ -116,6 +116,11 @@ class MultiLoginBlock extends BlockBase implements ContainerFactoryPluginInterfa
         'network' => 'google',
         'icon' => 'google',
       ],
+      'social_auth_amazon' => [
+        'name' => 'Amazon',
+        'network' => 'amazon',
+        'icon' => 'amazon',
+      ],
       'social_auth_facebook' => [
         'name' => 'Facebook',
         'network' => 'facebook',

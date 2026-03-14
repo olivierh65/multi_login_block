@@ -37,6 +37,22 @@ block.settings.multi_login_block:
               type: string
             open_default:
               type: boolean
+        social_auth_amazon:
+          type: mapping
+          label: 'Amazon'
+          mapping:
+            enabled:
+              type: boolean
+            label:
+              type: string
+            network:
+              type: string
+            custom_url:
+              type: string
+            button_text:
+              type: string
+            open_default:
+              type: boolean
         social_auth_facebook:
           type: mapping
           label: 'Facebook'
